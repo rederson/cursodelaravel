@@ -50,7 +50,13 @@ Aula 1
 Route::fallback(function () {
     dd('Esta rota não existe!!!!');
 });
+/**
+ *
+ *
+* Route::resource('/usuarios', UsersController::class);*
 
-Route::resource('/usuarios', UsersController::class);
+* Route::apiResource('/usuarios.posts', UsersController::class)->shallow(); // shallow remove o último parâmetroe
+ *
+*/
 
-Route::apiResource('/usuarios.posts', UsersController::class)->shallow(); // shallow remove o último parâmetroe
+Route::resource('/user', UsersController::class)->middleware(['MyFirstMiddleware:admin']);
