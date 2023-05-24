@@ -36,20 +36,16 @@ class UsersController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function show($id)
+    public function show($user)
     {
-        $user = User::find($id); // retorna dado direto
-        //$user = User::where('id', $id)->get();// retorna um array com o dado
-        //$user = User::where('id', $id)->first();
-        //dd($user);
         return view('user.show', [
             'usuario' => $user
         ]);
     }
 
-    public function edit($id)
+    public function edit($user)
     {
-        $user = User::find($id);
+
         return view('user.edit', [
             'usuario' => $user
         ]);
@@ -58,12 +54,11 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
         //dd($request->except(['_method', '_token'])); // ou
         //dd($request->only(['name', 'email']));
         $data =  $request->only(['name', 'email']);
-        $user = User::find($id);
         //dd($user);
         $user->update($data); // atualiza os dados no banco
         return redirect()->back(); // retornar para o formuláio novamente
@@ -72,9 +67,8 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($user)
     {
-        $user =  User::find($id);
         $user->delete();
         return redirect()->back();
     }

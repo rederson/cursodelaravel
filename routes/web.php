@@ -4,20 +4,53 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
+Aula 1
 */
 
-Route::get('/usuarios/adicionar',[UsersController::class, 'create'])->name('user.create');
-Route::post('/usuarios/adicionar',[UsersController::class, 'store'])->name('user.store');
-Route::get('/usuarios',[UsersController::class,'index'])->name('user.index');
-Route::get('/usuario/{id}',[UsersController::class,'show'])->name('user.show');
-Route::get('/usuario/edit/{id}', [UsersController::class,'edit'])->name('user.edit');
-Route::put('usuario/update/{id}', [UsersController::class, 'update'])->name('user.update');
-Route::delete('usuario/delete/{id}', [UsersController::class, 'destroy'])->name('user.destroy');
+/**
+ *Route::match(['put','get', 'post'], '/usuarios', [UsersController::class, 'index']); // restringe os metodos aceitados para execução
+ *Route::any('/usuarios', [UsersController::class, 'index']); // aceita qualquer metodo para execução
+ *Route::view('/welcome', 'welcome', ['nome' => 'aberto', 'email' => 'email@email])
+ *
+ *
+ */
+/***
+ * * Aula 2 *
+ *
+ */
+/*Route::get('search/{search}', function ($search) {
+    return $search;
+})->where('search', '.*');
+*/
+/** Aulas 3 a 7
+ ** Route::get('/usuario/{user}', [UsersController::class, 'show'])
+ *    ->missing(function (){
+ *       return redirect()->route('user.index');
+ *   })
+ *   ->name('user.show');
+ *Route::fallback(function (){
+ *    return redirect()->route('user.index');
+ *});
+ *
+ *Route::prefix('usuarios')->name('user.')
+ *    ->controller(UsersController::class)
+ *    //->middleware('auth')
+ **   ->group(function () {
+ **       Route::get('/adicionar', 'create')->name('create');
+ **      Route::post('/adicionar','store')->name('store');
+ *      Route::get('/','index')->name('index');
+ *      Route::get('/{user}','show')->name('show');
+ *      Route::get('/edit/{user}', 'edit')->name('edit');
+ *      Route::put('/update/{user}','update')->name('update');
+ *      Route::delete('/delete/{user}', 'destroy')->name('destroy');
+ *});
+ **/
+/** Aula 8 e 9 Rotas Resource */
+
+Route::fallback(function () {
+    dd('Esta rota não existe!!!!');
+});
+
+Route::resource('/usuarios', UsersController::class);
+
+Route::apiResource('/usuarios.posts', UsersController::class)->shallow(); // shallow remove o último parâmetroe
