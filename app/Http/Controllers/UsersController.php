@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,14 +24,15 @@ class UsersController extends Controller
         return view('user.create');
     }
 
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         //dd('cheguei aqui...');
-        $data =  $request->only(['name', 'email']);
+        $attributes =  $request->validated();
 
-        $data['password'] = bcrypt('password');
-
-        User::create($data);
+        $attributes['password'] = bcrypt('password');
+        dd($attributes);
+        
+        User::create($attributes);
 
         //return redirect()->back();
         return redirect()->route('user.index');

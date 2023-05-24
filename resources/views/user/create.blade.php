@@ -17,20 +17,57 @@
     <main class="container">
 
         <h1>ADICIONAR</h1>
-        <form method="post" action="{{route('user.store')}}">
+        <form method="post" action="{{ route('user.store') }}">
             @csrf
             <div class="mb-3">
-              <label for="name" class="form-label">Nome</label>
-              <input type="text" name="name"  class="form-control" id="name" aria-describedby="name">
-              <div id="name" class="form-text">Este é o campo nome.</div>
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                    id="name" aria-describedby="name" value="{{ old('name') }}">
+                <div id="name" class="form-text">Este é o campo nome.</div>
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="email" aria-describedby="email">
-              <div id="email" class="form-text">Este é o campo email.</div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                    id="email" aria-describedby="email" value="{{ old('email') }}">
+                <div id="email" class="form-text">Este é o campo email.</div>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-          </form>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                    id="email" aria-describedby="email">
+                <div id="password" class="form-text">Este é o campo de senha.</div>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input @error('term') is-invalid @enderror" name="term" id="term">
+                <label for="flexRadioDefault1" class="form-check-label">
+                    Termo de uso
+                </label>
+                @error('term')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">SALVAR</button>
+        </form>
 
 
     </main>

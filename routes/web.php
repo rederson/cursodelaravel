@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,4 +60,7 @@ Route::fallback(function () {
  *
 */
 
-Route::resource('/user', UsersController::class)->middleware(['MyFirstMiddleware:admin']);
+//Route::resource('/user', UsersController::class)->middleware(['MyFirstMiddleware:admin']);
+Route::get('/filmes', MoviesController::class);
+
+Route::resource('/user', UsersController::class);
