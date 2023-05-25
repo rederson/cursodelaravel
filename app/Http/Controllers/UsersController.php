@@ -30,9 +30,10 @@ class UsersController extends Controller
         $attributes =  $request->validated();
 
         $attributes['password'] = bcrypt('password');
-        dd($attributes);
-        
-        User::create($attributes);
+        //dd($attributes);
+
+        $user = User::create($attributes);
+        $user->address()->create($attributes);
 
         //return redirect()->back();
         return redirect()->route('user.index');

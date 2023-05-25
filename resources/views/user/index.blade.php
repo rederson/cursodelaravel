@@ -24,6 +24,7 @@
             <th scope="col">Email</th>
             <th scope="col">Ver</th>
             <th scope="col">Editar</th>
+            <th scope="col">POST</th>
             <th scope="col">Deletar</th>
           </tr>
         </thead>
@@ -35,6 +36,7 @@
                     <td>{{ $user->email }}</td>
                     <td> <a type="button" href="{{ route('user.show', $user->id) }}" class="btn btn-success">VER</a>
                     <td> <a type="button" href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">EDITAR</a>
+                    <td> <a type="button" href="{{ route('posts.create', $user->id) }}" class="btn btn-info">POST</a>
                     <td>
                         <form action="{{ route('user.destroy', $user->id)}}" method="post">
                             @method('delete')

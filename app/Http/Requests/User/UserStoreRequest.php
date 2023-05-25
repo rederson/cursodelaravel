@@ -25,6 +25,9 @@ class UserStoreRequest extends FormRequest
             'name' => 'string|required',
             'email' => 'email|required',
             'password' =>'string|required',
+            'is_admin' => 'nullable',
+            'street' => 'string|required',
+            'number' => 'string|required',
             'term' => 'accepted',
         ];
     }
@@ -35,7 +38,8 @@ class UserStoreRequest extends FormRequest
             'string' => 'Esse campo precisa ser uma string.',
             'required' => 'Esse campo é obrigatório',
             'email' => 'Esse campo deve ser um email',
-            'accepted' => 'Selecione para aceitar os termos.'
+            'accepted' => 'Selecione para aceitar os termos.',
+            'nullaable' => 'este campo não pode ser nulo',
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,6 @@ Route::fallback(function () {
 Route::get('/filmes', MoviesController::class);
 
 Route::resource('/user', UsersController::class);
+
+Route::get('/new-post/user/{id}',[PostsController::class, 'create'])->name('posts.create');
+Route::post('/store',[PostsController::class, 'store'])->name('posts.store');

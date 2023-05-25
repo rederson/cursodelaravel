@@ -52,6 +52,28 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="street" class="form-label">Logradouro</label>
+                <input type="street" name="street" class="form-control @error('street') is-invalid @enderror"
+                    id="street" aria-describedby="street">
+                <div id="street" class="form-text">Este é o campo de Logradouro.</div>
+                @error('street')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="number" class="form-label">Número</label>
+                <input type="number" name="number" class="form-control @error('number') is-invalid @enderror"
+                    id="number" aria-describedby="number">
+                <div id="number" class="form-text">Este é para o número do logradouro.</div>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <div class="form-check">
                 <input type="radio" class="form-check-input @error('term') is-invalid @enderror" name="term" id="term">
                 <label for="flexRadioDefault1" class="form-check-label">
