@@ -14,7 +14,11 @@
     <main class="container">
 
     <h1>USUARIOS</h1>
-    <a type="button" href="{{ route('user.create')}}" class="btn btn-primary"> NOVO USUÁRIO </a>
+    <a type="button" href="{{ route('users.create')}}" class="btn btn-primary"> NOVO USUÁRIO </a>
+    <div class="left">
+        <a type="button" href="{{ route('posts.create') }}" class="btn btn-info"> NOVO POST </a>
+
+    </div>
 
     <table class="table">
         <thead>
@@ -22,9 +26,11 @@
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
+            <th scope="col">Data de Criação</th>
             <th scope="col">Ver</th>
             <th scope="col">Editar</th>
-            <th scope="col">POST</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Posts</th>
             <th scope="col">Deletar</th>
           </tr>
         </thead>
@@ -34,11 +40,15 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td> <a type="button" href="{{ route('user.show', $user->id) }}" class="btn btn-success">VER</a>
-                    <td> <a type="button" href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">EDITAR</a>
-                    <td> <a type="button" href="{{ route('posts.create', $user->id) }}" class="btn btn-info">POST</a>
+                    <td>{{ $user->address->street }}</td>
+                    <td>{{ $user->address->number }}</td>
+                    <td>{{ $user->created_at }}</td>
+                    <td> <a type="button" href="{{ route('users.show', $user->id) }}" class="btn btn-success">VER</a>
+                    <td> <a type="button" href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">EDITAR</a>
+                    <td> <a type="button" href="{{ route('users.address', $user->id) }}" class="btn btn-info">Endereço</a>
+                    <td> <a type="button" href="{{ route('users.posts', $user->id) }}" class="btn btn-dark">Posts</a>
                     <td>
-                        <form action="{{ route('user.destroy', $user->id)}}" method="post">
+                        <form action="{{ route('users.destroy', $user->id)}}" method="post">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger">DELETAR</button>

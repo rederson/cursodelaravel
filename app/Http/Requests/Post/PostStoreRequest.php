@@ -21,8 +21,10 @@ class PostStoreRequest extends FormRequest
         $url = $this->server('HTTP_REFERER');
         $userId = explode('/', $url)[5];
         //dd($userId);
+
         $this->merge([
-            'slug' => Str::slug($this->slug),
+            //'slug' => Str::slug($this->slug), //modelo oficial
+            'user_id' => $userId,
         ]);
     }
 

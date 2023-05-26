@@ -75,4 +75,13 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    public function address($id)
+    {
+        //$user = User::with(['address', 'posts'])->find($id);
+        $user = User::find($id);
+        return view('user.address', [
+            'user' => $user,
+        ]);
+    }
 }

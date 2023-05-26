@@ -19,22 +19,6 @@
         <h1>ADICIONAR POST</h1>
         <form method="post" action="{{ route('posts.store') }}">
             @csrf
-            <div class="form-group mb-3">
-                <label for="user_id">Usuário</label>
-                <select class="form-control
-                    id="user_id" name="user_id" aria-describedby="user_id" value="{{ old('user_id') }}">
-                    <option selected>Escolha o usuário</option>
-                    @foreach ($users as $user)
-                        <option value="{{$user->id}}">{{ $user->id }} - {{ $user->name }}</option>
-                    @endforeach
-                </select>
-                <div id="user_id" class="form-text">Este é o campo com ud do usuário.</div>
-                @error('user_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
             <div class="form-grpup mb-3">
                 <label for="title" class="form-label">Título</label>
                 <input type="title" name="title" class="form-control @error('title') is-invalid @enderror"
