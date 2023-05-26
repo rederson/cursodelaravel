@@ -1,11 +1,19 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('usuarios')->controller(UsersController::class)->name('users.')->group(function () {
+Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('formRegister');
+Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('post.login');
 
+Route::middleware('auth')
+    ->prefix('usuarios')
+    ->controller(UsersController::class)
+    ->name('users.')
+    ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/novo-usuario', 'create')->name('create');
         Route::post('/novo-usuario', 'store')->name('store');

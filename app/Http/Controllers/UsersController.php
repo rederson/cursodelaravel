@@ -36,7 +36,7 @@ class UsersController extends Controller
         $user->address()->create($attributes);
 
         //return redirect()->back();
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     public function show($user)

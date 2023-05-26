@@ -17,7 +17,7 @@
     <main class="container">
 
         <h1>ADICIONAR</h1>
-        <form method="post" action="{{ route('users.store') }}">
+        <form method="post" action="{{ route('user.store') }}">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome</label>
