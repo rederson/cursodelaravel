@@ -28,7 +28,6 @@
 
         <div class="d-flex justify-content-between">
             <a type="button" href="{{ route('users.create') }}" class="btn btn-primary"> NOVO USUÁRIO </a>
-            <a type="button" href="{{ route('posts.create') }}" class="btn btn-info text white"> NOVO POST </a>
         </div>
 
         <table class="table">

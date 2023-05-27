@@ -3,18 +3,9 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-//Route::get('/', [AuthController::class, 'formLogin']);
-Route::redirect('/', 'login');
-//Route::view('/','auth.login');
-
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
-
-Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('formRegister');
-Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('post.login');
 
 Route::middleware('auth')
     ->prefix('usuarios')
@@ -33,5 +24,6 @@ Route::middleware('auth')
 
 });
 
-Route::get('/new-post}',[PostsController::class, 'create'])->name('posts.create');
-Route::post('/store',[PostsController::class, 'store'])->name('posts.store');
+
+//Auth::routes(['login' => false]); // remove link do scafold
+
