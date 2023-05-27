@@ -27,10 +27,15 @@ class UsersController extends Controller
     public function store(UserStoreRequest $request)
     {
         //dd('cheguei aqui...');
-        $attributes =  $request->validated();
+        $attributes = $request->validated();
+
+        $extension = $request->image->extension();
+
+        //$attributes['image']->store('teste');
+        $attributes['image']->storeAs('teste', 'novonome'.".$extension");
 
         $attributes['password'] = bcrypt('password');
-        //dd($attributes);
+        dd($attributes['image']);
 
         $user = User::create($attributes);
         $user->address()->create($attributes);

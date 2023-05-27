@@ -30,8 +30,8 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::model('user', User::class); // injection explicit -> toda vez que o parametro for user entenda que provém do model User
 
-        RateLimiter::for('web', function (Request $request) {
-            return Limit::perMinute(5)->by($request->user()?->id ?: $request->ip());
+        RateLimiter::for('web', function (Request $request) { // trocar api por web para controle de requests
+            return Limit::perMinute(10)->by($request->user()?->id ?: $request->ip());
         });
 
         $this->routes(function () {

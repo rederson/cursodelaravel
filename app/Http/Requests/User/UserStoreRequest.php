@@ -28,6 +28,7 @@ class UserStoreRequest extends FormRequest
             'is_admin' => 'nullable',
             'street' => 'string|required',
             'number' => 'string|required',
+            'image' => 'required',
             'term' => 'accepted',
         ];
     }

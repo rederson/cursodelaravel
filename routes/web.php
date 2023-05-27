@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ Route::middleware('auth')
 
 });
 
+Route::get('/login', [LoginController::class,'login'])->name('login');
 
 //Auth::routes(['login' => false]); // remove link do scafold
 
