@@ -5,6 +5,10 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/', [AuthController::class, 'formLogin']);
+
+
 Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('formRegister');
 Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('post.login');
