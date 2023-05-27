@@ -16,11 +16,19 @@
 <body>
     <main class="container">
 
-        <h1>USUÁRIOS</h1>
+        <div class="d-flex justify-content-between p-2">
+            <h1>INDEX</h1>
 
-        <div class="btn-group" role="group" aria-label="Usuários">
-            <a type="button" href="{{ route('users.create') }}" class="btn btn-info"> NOVO USUÁRIO </a>
-            <a type="button" href="{{ route('posts.create') }}" class="btn btn-secondary"> NOVO POST </a>
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-link">SAIR</button>
+            </form>
+
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a type="button" href="{{ route('users.create') }}" class="btn btn-primary"> NOVO USUÁRIO </a>
+            <a type="button" href="{{ route('posts.create') }}" class="btn btn-info text white"> NOVO POST </a>
         </div>
 
         <table class="table">

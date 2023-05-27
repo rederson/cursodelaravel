@@ -26,7 +26,7 @@ class AuthController extends Controller
     public function login(LoginStoreRequest $request)
     {
         $credentials = $request->validated();
-        
+
         //dd($credentials);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -34,6 +34,15 @@ class AuthController extends Controller
             return redirect()->intended(route('users.index'));
         }
         // caso não esteja logado é redirecionado pelo código abaixo
+        return redirect()->route('login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 }
