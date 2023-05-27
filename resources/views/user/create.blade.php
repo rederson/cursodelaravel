@@ -17,7 +17,7 @@
     <main class="container">
 
         <h1>ADICIONAR</h1>
-        <form method="post" action="{{ route('users.store') }}">
+        <form method="post" action="{{ route('users.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nome</label>
@@ -88,6 +88,13 @@
             </div>
             <div class="mb-3">
                 <a href="http://">Forgot password?</a>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="" class="form-label">Name</label>
+              <input type="file"
+                class="form-control" name="image" id="image" accept=".jpeg, .jpg" aria-describedby="helpId" placeholder="">
+              <small id="helpId" class="form-text text-muted">Help text</small>
             </div>
 
 
