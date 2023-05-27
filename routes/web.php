@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+Route:: redirect('/', 'login');
+Route::get('/cadastro', [AuthController::class, 'formRegister'])->name('formRegister');
+Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('post.login');
+
 Route::middleware('auth')
     ->prefix('usuarios')
     ->controller(UsersController::class)
@@ -15,7 +20,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/novo-usuario', 'create')->name('create');
-        Route::post('/novo-usuario', 'store')->name('store');
+        Route::post('/novo-usuario', 'store')->name('store')->withoutMiddleware('auth');
         Route::get('/editar/{id}', 'edit')->name('edit');
         Route::put('/editar/{id}', 'update')->name('update');
         Route::get('/{id}/detalhes', 'show')->name('show');
