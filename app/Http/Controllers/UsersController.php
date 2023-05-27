@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -29,16 +30,23 @@ class UsersController extends Controller
         //dd('cheguei aqui...');
         $attributes = $request->validated();
 
-        $extension = $request->image->extension();
+        //$extension = $request->image->extension();
+        //$extension =  $request->file('image')->extension();
+        $extension = $attributes['image']->extension();
+        $attributes['image']->getMimetype();
+
 
         //$attributes['image']->store('teste');
-        $attributes['image']->storeAs('teste', 'novonome'.".$extension");
+        $path = $attributes['image']->store(Str::slug($attributes['name']) . '-' . Str::slug(now()));
 
         $attributes['password'] = bcrypt('password');
-        dd($attributes['image']);
+        dd($path);
 
         $user = User::create($attributes);
         $user->address()->create($attributes);
+        $user->image()->create([
+            'image' => $path
+        ]);
 
         //return redirect()->back();
         return redirect()->route('users.index');
